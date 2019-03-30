@@ -3,7 +3,9 @@
 
 = align
 
-align provides text align right or center or left command.
+align is text align command.
+align [left|center|right]-justify text files.
+or does stdin too.
 
 == development
 
@@ -11,8 +13,7 @@ align provides text align right or center or left command.
 
 == Usage examples
 
-[source,bash]
-align left README.adoc | head | sed -r 's/$/</g'
+[source,bash] align left README.adoc | head | sed -r 's/$/</g'
 
 [quote]
 ----
