@@ -1,10 +1,8 @@
-package subcmd
+package main
 
 import (
 	"github.com/spf13/cobra"
 )
-
-var Version string
 
 func init() {
 	cobra.OnInitialize()
@@ -15,13 +13,12 @@ var RootCommand = &cobra.Command{
 	Short:   "align is text align command",
 	Example: "align right README.md",
 	Version: Version,
-	Long: `
-align is text align command.
+	Long: `align is text align command.
+align [left|center|right]-justify text files.
+or does stdin too.
 
 Repository: https://github.com/jiro4989/align
     Author: jiro4989
+   Version: ` + Version + `
 	`,
-	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Usage()
-	},
 }

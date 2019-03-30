@@ -1,4 +1,4 @@
-package subcmd
+package main
 
 import (
 	"fmt"
@@ -11,16 +11,16 @@ import (
 )
 
 func init() {
-	RootCommand.AddCommand(centerCommand)
-	centerCommand.Flags().StringP("pad", "p", " ", "Padding string")
-	centerCommand.Flags().IntP("length", "n", -1, "Padding length")
-	centerCommand.Flags().BoolP("write", "w", false, "Overwrite file")
-	centerCommand.Flags().StringP("linefeed", "l", "\n", "Line feed")
+	RootCommand.AddCommand(rightCommand)
+	rightCommand.Flags().StringP("pad", "p", " ", "Padding string")
+	rightCommand.Flags().IntP("length", "n", -1, "Padding length")
+	rightCommand.Flags().BoolP("write", "w", false, "Overwrite file")
+	rightCommand.Flags().StringP("linefeed", "l", "\n", "Line feed")
 }
 
-var centerCommand = &cobra.Command{
-	Use:   "center",
-	Short: "Align center command from file or stdin",
+var rightCommand = &cobra.Command{
+	Use:   "right",
+	Short: "Align right command from file or stdin",
 	Run: func(cmd *cobra.Command, args []string) {
 		f := cmd.Flags()
 
@@ -47,7 +47,7 @@ var centerCommand = &cobra.Command{
 		// 引数なしの場合は標準入力を処理
 		if len(args) < 1 {
 			args = readStdin()
-			padded := align.AlignCenter(args, n, p)
+			padded := align.AlignRight(args, n, p)
 			for _, v := range padded {
 				fmt.Println(v)
 			}
@@ -61,7 +61,7 @@ var centerCommand = &cobra.Command{
 			}
 			s := string(b)
 			lines := strings.Split(s, lf)
-			padded := align.AlignCenter(lines, n, p)
+			padded := align.AlignRight(lines, n, p)
 
 			// ファイル上書き指定があれば上書き
 			if writeFile {
