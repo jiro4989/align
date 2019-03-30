@@ -29,20 +29,20 @@ align provides text align right or center or left command.                <
 ----
 
 [source,bash]
-align center -n 80 README.adoc | head
+align center -n 80 README.adoc | head | sed -r 's/$/</g'
 
 [quote]
 ----
-                                     :toc:                                      
-                                   :sectnums:                                   
-                                                                                
-                                    = align                                     
-                                                                                
-           align provides text align right or center or left command.           
-                                                                                
-                                 == development                                 
-                                                                                
-                          go version go1.11 linux/amd64                         
+                                     :toc:                                      <
+                                   :sectnums:                                   <
+                                                                                <
+                                    = align                                     <
+                                                                                <
+           align provides text align right or center or left command.           <
+                                                                                <
+                                 == development                                 <
+                                                                                <
+                          go version go1.11 linux/amd64                         <
 ----
 
 [source,bash]
