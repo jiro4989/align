@@ -49,6 +49,8 @@ func TestAlignLeft(t *testing.T) {
 	assert.Equal(t, []string{"a 　　", "123456"}, AlignLeft([]string{"a", "123456"}, -1, "　"))
 	assert.Equal(t, []string{"a ", "a "}, AlignLeft([]string{"a", "a"}, 2, "　"))
 	assert.Equal(t, []string{"a 　", "a 　"}, AlignLeft([]string{"a", "a"}, 3, "　"))
+
+	assert.Equal(t, []string{"123456", "a     "}, AlignLeft([]string{"123456", "a"}, 4, " "))
 }
 
 func TestAlignCenter(t *testing.T) {
@@ -80,6 +82,7 @@ func TestAlignCenter(t *testing.T) {
 
 	assert.Equal(t, []string{"　a　", "12345"}, AlignCenter([]string{"a", "12345"}, -1, "　"))
 
+	assert.Equal(t, []string{"123456", "  a   "}, AlignCenter([]string{"123456", "a"}, 4, " "))
 }
 
 func TestAlignRight(t *testing.T) {
@@ -114,4 +117,6 @@ func TestAlignRight(t *testing.T) {
 	assert.Equal(t, []string{"　　 a", "123456"}, AlignRight([]string{"a", "123456"}, -1, "　"))
 	assert.Equal(t, []string{" a", " a"}, AlignRight([]string{"a", "a"}, 2, "　"))
 	assert.Equal(t, []string{"　 a", "　 a"}, AlignRight([]string{"a", "a"}, 3, "　"))
+
+	assert.Equal(t, []string{"123456", "     a"}, AlignRight([]string{"123456", "a"}, 4, " "))
 }

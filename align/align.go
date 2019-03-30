@@ -35,6 +35,8 @@ func AlignLeft(lines []string, length int, pad string) []string {
 	maxWidth := MaxStringWidth(lines)
 	if length == -1 {
 		length = maxWidth
+	} else if length < maxWidth {
+		length = maxWidth
 	}
 
 	// マルチバイト文字を使うときは長さを偶数に揃える
@@ -77,6 +79,8 @@ func AlignCenter(lines []string, length int, pad string) []string {
 	// -1のときは文字列の長さをalignの長さにする
 	maxWidth := MaxStringWidth(lines)
 	if length == -1 {
+		length = maxWidth
+	} else if length < maxWidth {
 		length = maxWidth
 	}
 
@@ -132,6 +136,8 @@ func AlignRight(lines []string, length int, pad string) []string {
 	// -1のときは文字列の長さをalignの長さにする
 	maxWidth := MaxStringWidth(lines)
 	if length == -1 {
+		length = maxWidth
+	} else if length < maxWidth {
 		length = maxWidth
 	}
 
