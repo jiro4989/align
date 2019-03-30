@@ -19,6 +19,5 @@ or does stdin too.
 
 Repository: https://github.com/jiro4989/align
     Author: jiro4989
-   Version: ` + Version + `
 	`,
 }
