@@ -66,8 +66,53 @@ func AlignLeft(lines []string, length int, pad string) []string {
 // padは埋める文字列を指定する。埋める文字が見た目上でマルチバイトの場合は
 // たとえlengthが奇数でも+1して偶数になるように調整する。
 func AlignCenter(lines []string, length int, pad string) []string {
-	// TODO
-	return nil
+	if length == 0 || len(lines) < 1 {
+		return lines
+	}
+
+	// 空白埋めする文字列がマルチバイト文字かどうか
+	padWidtn := runewidth.StringWidth(pad)
+	padIsMultiByteString := padWidtn == 2
+
+	// -1のときは文字列の長さをalignの長さにする
+	maxWidth := MaxStringWidth(lines)
+	if length == -1 {
+		length = maxWidth
+	}
+
+	ret := []string{}
+	for _, line := range lines {
+		l := runewidth.StringWidth(line)
+		diff := length - l
+		if diff%2 != 0 {
+			line += " "
+			diff--
+		}
+		// Repeatするときにマルチバイト文字を使うときは2分の1にする
+		var s string
+		if padIsMultiByteString {
+			div, mod := diff/4, diff%4
+			p := strings.Repeat(pad, div)
+			s = p + line + p
+			switch mod {
+			case 1:
+				s = " " + s
+			case 2:
+				s = " " + s + " "
+			case 3:
+				s = pad + s + " "
+			}
+		} else {
+			div, mod := diff/2, diff%2
+			p := strings.Repeat(pad, div)
+			s = p + line + p
+			if 0 < mod {
+				s = " " + s
+			}
+		}
+		ret = append(ret, s)
+	}
+	return ret
 }
 
 // AlignRight は文字列を右寄せする。

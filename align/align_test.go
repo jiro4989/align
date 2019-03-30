@@ -51,6 +51,37 @@ func TestAlignLeft(t *testing.T) {
 	assert.Equal(t, []string{"a 　", "a 　"}, AlignLeft([]string{"a", "a"}, 3, "　"))
 }
 
+func TestAlignCenter(t *testing.T) {
+	assert.Equal(t, []string{}, AlignCenter([]string{}, -1, " "))
+	assert.Equal(t, []string{}, AlignCenter([]string{}, -1, "　"))
+	assert.Equal(t, []string{}, AlignCenter([]string{}, 0, " "))
+	assert.Equal(t, []string{}, AlignCenter([]string{}, 0, "　"))
+	assert.Equal(t, []string{}, AlignCenter([]string{}, 1, " "))
+	assert.Equal(t, []string{}, AlignCenter([]string{}, 1, "　"))
+
+	assert.Equal(t, []string{"a"}, AlignCenter([]string{"a"}, -1, " "))
+	assert.Equal(t, []string{"a"}, AlignCenter([]string{"a"}, 0, " "))
+	assert.Equal(t, []string{"a"}, AlignCenter([]string{"a"}, 1, " "))
+	assert.Equal(t, []string{"a "}, AlignCenter([]string{"a"}, 2, " "))
+	assert.Equal(t, []string{" a "}, AlignCenter([]string{"a"}, 3, " "))
+	assert.Equal(t, []string{" a  "}, AlignCenter([]string{"a"}, 4, " "))
+
+	assert.Equal(t, []string{"a"}, AlignCenter([]string{"a"}, -1, "　"))
+	assert.Equal(t, []string{"a"}, AlignCenter([]string{"a"}, 0, "　"))
+	assert.Equal(t, []string{"a"}, AlignCenter([]string{"a"}, 1, "　"))
+	assert.Equal(t, []string{"a "}, AlignCenter([]string{"a"}, 2, "　"))
+	assert.Equal(t, []string{" a "}, AlignCenter([]string{"a"}, 3, "　"))
+	assert.Equal(t, []string{" a  "}, AlignCenter([]string{"a"}, 4, "　"))
+	assert.Equal(t, []string{"　a　"}, AlignCenter([]string{"a"}, 5, "　"))
+	assert.Equal(t, []string{"　a 　"}, AlignCenter([]string{"a"}, 6, "　"))
+	assert.Equal(t, []string{" 　a 　 "}, AlignCenter([]string{"a"}, 8, "　"))
+	assert.Equal(t, []string{"　　a　　"}, AlignCenter([]string{"a"}, 9, "　"))
+	assert.Equal(t, []string{"　　a 　　"}, AlignCenter([]string{"a"}, 10, "　"))
+
+	assert.Equal(t, []string{"　a　", "12345"}, AlignCenter([]string{"a", "12345"}, -1, "　"))
+
+}
+
 func TestAlignRight(t *testing.T) {
 	assert.Equal(t, []string{}, AlignRight([]string{}, -1, " "))
 	assert.Equal(t, []string{}, AlignRight([]string{}, -1, "　"))
