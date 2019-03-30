@@ -1,0 +1,103 @@
+:toc:
+:sectnums:
+
+= align
+
+align provides text align right or center or left command.
+
+== development
+
+ go version go1.11 linux/amd64
+
+== Usage examples
+
+[source,bash]
+align left README.adoc | head | sed -r 's/$/</g'
+
+[quote]
+----
+:toc:                                                                     <
+:sectnums:                                                                <
+                                                                          <
+= align                                                                   <
+                                                                          <
+align provides text align right or center or left command.                <
+                                                                          <
+== development                                                            <
+                                                                          <
+ go version go1.11 linux/amd64                                            <
+----
+
+[source,bash]
+align center -n 80 README.adoc | head
+
+[quote]
+----
+                                     :toc:                                      
+                                   :sectnums:                                   
+                                                                                
+                                    = align                                     
+                                                                                
+           align provides text align right or center or left command.           
+                                                                                
+                                 == development                                 
+                                                                                
+                          go version go1.11 linux/amd64                         
+----
+
+[source,bash]
+align right README.adoc | head
+
+[quote]
+----
+                                                                           :toc:
+                                                                      :sectnums:
+                                                                                
+                                                                         = align
+                                                                                
+                      align provides text align right or center or left command.
+                                                                                
+                                                                  == development
+                                                                                
+                                                   go version go1.11 linux/amd64
+----
+
+== Install
+
+[source,bash]
+go get -u github.com/jiro4989/align
+
+or
+
+Download binary from https://github.com/jiro4989/align/releases[Releases].
+
+== Help
+
+[source]
+----
+align is text align command.
+align [left|center|right]-justify text files.
+or does stdin too.
+
+Repository: https://github.com/jiro4989/align
+    Author: jiro4989
+   Version: 1.0.0
+
+Usage:
+  align [command]
+
+Examples:
+align right README.md
+
+Available Commands:
+  center      Align center command from file or stdin
+  help        Help about any command
+  left        Align left command from file or stdin
+  right       Align right command from file or stdin
+
+Flags:
+  -h, --help      help for align
+      --version   version for align
+
+Use "align [command] --help" for more information about a command.
+----
