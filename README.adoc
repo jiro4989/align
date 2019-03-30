@@ -7,6 +7,8 @@ align is text align command.
 align [left|center|right]-justify text files.
 or does stdin too.
 
+image:https://travis-ci.org/jiro4989/align.svg?branch=master["Build Status", link="https://travis-ci.org/jiro4989/align"]
+
 == development
 
  go version go1.11 linux/amd64
