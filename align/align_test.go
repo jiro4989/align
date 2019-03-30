@@ -50,3 +50,37 @@ func TestAlignLeft(t *testing.T) {
 	assert.Equal(t, []string{"a ", "a "}, AlignLeft([]string{"a", "a"}, 2, "　"))
 	assert.Equal(t, []string{"a 　", "a 　"}, AlignLeft([]string{"a", "a"}, 3, "　"))
 }
+
+func TestAlignRight(t *testing.T) {
+	assert.Equal(t, []string{}, AlignRight([]string{}, -1, " "))
+	assert.Equal(t, []string{}, AlignRight([]string{}, -1, "　"))
+	assert.Equal(t, []string{}, AlignRight([]string{}, 0, " "))
+	assert.Equal(t, []string{}, AlignRight([]string{}, 0, "　"))
+	assert.Equal(t, []string{}, AlignRight([]string{}, 1, " "))
+	assert.Equal(t, []string{}, AlignRight([]string{}, 1, "　"))
+
+	assert.Equal(t, []string{"a"}, AlignRight([]string{"a"}, -1, " "))
+	assert.Equal(t, []string{" a"}, AlignRight([]string{"a"}, -1, "　"))
+	assert.Equal(t, []string{"a"}, AlignRight([]string{"a"}, 0, " "))
+	assert.Equal(t, []string{"a"}, AlignRight([]string{"a"}, 0, "　"))
+	assert.Equal(t, []string{"a"}, AlignRight([]string{"a"}, 1, " "))
+	assert.Equal(t, []string{" a"}, AlignRight([]string{"a"}, 1, "　"))
+	assert.Equal(t, []string{" a"}, AlignRight([]string{"a"}, 2, " "))
+	assert.Equal(t, []string{" a"}, AlignRight([]string{"a"}, 2, "　"))
+	assert.Equal(t, []string{"  a"}, AlignRight([]string{"a"}, 3, " "))
+	assert.Equal(t, []string{"　 a"}, AlignRight([]string{"a"}, 3, "　"))
+	assert.Equal(t, []string{"   a"}, AlignRight([]string{"a"}, 4, " "))
+	assert.Equal(t, []string{"　 a"}, AlignRight([]string{"a"}, 4, "　"))
+
+	assert.Equal(t, []string{" a", "あ"}, AlignRight([]string{"a", "あ"}, -1, " "))
+	assert.Equal(t, []string{"a", "a"}, AlignRight([]string{"a", "a"}, -1, " "))
+	assert.Equal(t, []string{"    a", "12345"}, AlignRight([]string{"a", "12345"}, -1, " "))
+	assert.Equal(t, []string{"     a", "123456"}, AlignRight([]string{"a", "123456"}, -1, " "))
+	assert.Equal(t, []string{" a", " a"}, AlignRight([]string{"a", "a"}, 2, " "))
+	assert.Equal(t, []string{"  a", "  a"}, AlignRight([]string{"a", "a"}, 3, " "))
+	assert.Equal(t, []string{" a", " a"}, AlignRight([]string{"a", "a"}, -1, "　"))
+	assert.Equal(t, []string{"　　 a", " 12345"}, AlignRight([]string{"a", "12345"}, -1, "　"))
+	assert.Equal(t, []string{"　　 a", "123456"}, AlignRight([]string{"a", "123456"}, -1, "　"))
+	assert.Equal(t, []string{" a", " a"}, AlignRight([]string{"a", "a"}, 2, "　"))
+	assert.Equal(t, []string{"　 a", "　 a"}, AlignRight([]string{"a", "a"}, 3, "　"))
+}
