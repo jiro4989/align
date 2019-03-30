@@ -13,7 +13,7 @@ func init() {
 var RootCommand = &cobra.Command{
 	Use:     "align",
 	Short:   "align is text align command",
-	Example: "align right -n 10 a",
+	Example: "align right README.md",
 	Version: Version,
 	Long: `
 align is text align command.
