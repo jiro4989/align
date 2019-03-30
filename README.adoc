@@ -13,7 +13,8 @@ or does stdin too.
 
 == Usage examples
 
-[source,bash] align left README.adoc | head | sed -r 's/$/</g'
+[source,bash]
+align left README.adoc | head | sed -r 's/$/</g'
 
 [quote]
 ----
