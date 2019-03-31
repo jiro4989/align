@@ -93,7 +93,7 @@ func AlignCenter(lines []string, length int, pad string) []string {
 			line += " "
 			diff--
 		}
-		// Repeatするときにマルチバイト文字を使うときは2分の1にする
+
 		var s string
 		if padIsMultiByteString {
 			div, mod := diff/4, diff%4
