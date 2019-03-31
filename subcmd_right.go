@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/jiro4989/align/align"
+	"github.com/nsf/termbox-go"
 	"github.com/spf13/cobra"
 )
 
@@ -16,6 +17,7 @@ func init() {
 	rightCommand.Flags().IntP("length", "n", -1, "Padding length")
 	rightCommand.Flags().BoolP("write", "w", false, "Overwrite file")
 	rightCommand.Flags().StringP("linefeed", "l", "\n", "Line feed")
+	rightCommand.Flags().BoolP("termwidth", "t", false, "Terminal width")
 }
 
 var rightCommand = &cobra.Command{
@@ -42,6 +44,19 @@ var rightCommand = &cobra.Command{
 		lf, err := f.GetString("linefeed")
 		if err != nil {
 			panic(err)
+		}
+
+		useTermWidth, err := f.GetBool("termwidth")
+		if err != nil {
+			panic(err)
+		}
+
+		if useTermWidth {
+			if err := termbox.Init(); err != nil {
+				panic(err)
+			}
+			n, _ = termbox.Size()
+			termbox.Close()
 		}
 
 		// 引数なしの場合は標準入力を処理
