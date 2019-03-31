@@ -76,7 +76,7 @@ func TestAlignCenter(t *testing.T) {
 	assert.Equal(t, []string{" a  "}, AlignCenter([]string{"a"}, 4, "　"))
 	assert.Equal(t, []string{"　a　"}, AlignCenter([]string{"a"}, 5, "　"))
 	assert.Equal(t, []string{"　a 　"}, AlignCenter([]string{"a"}, 6, "　"))
-	assert.Equal(t, []string{" 　a 　 "}, AlignCenter([]string{"a"}, 8, "　"))
+	assert.Equal(t, []string{"　 a  　"}, AlignCenter([]string{"a"}, 8, "　"))
 	assert.Equal(t, []string{"　　a　　"}, AlignCenter([]string{"a"}, 9, "　"))
 	assert.Equal(t, []string{"　　a 　　"}, AlignCenter([]string{"a"}, 10, "　"))
 
