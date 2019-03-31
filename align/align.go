@@ -97,8 +97,7 @@ func AlignCenter(lines []string, length int, pad string) []string {
 		var s string
 		if padIsMultiByteString {
 			div, mod := diff/4, diff%4
-			p := strings.Repeat(pad, div)
-			s = p + line + p
+			s = line
 			switch mod {
 			case 1:
 				s = " " + s
@@ -107,13 +106,16 @@ func AlignCenter(lines []string, length int, pad string) []string {
 			case 3:
 				s = pad + s + " "
 			}
+			p := strings.Repeat(pad, div)
+			s = p + s + p
 		} else {
 			div, mod := diff/2, diff%2
-			p := strings.Repeat(pad, div)
-			s = p + line + p
+			s = line
 			if 0 < mod {
 				s = " " + s
 			}
+			p := strings.Repeat(pad, div)
+			s = p + s + p
 		}
 		ret = append(ret, s)
 	}
