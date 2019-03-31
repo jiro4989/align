@@ -32,6 +32,7 @@ func AlignLeft(lines []string, length int, pad string) []string {
 	padIsMultiByteString := padWidtn == 2
 
 	// -1のときは文字列の長さをalignの長さにする
+	// パッディングの長さと、処理対象の文字列のより長い方を揃える数値に指定
 	maxWidth := MaxStringWidth(lines)
 	if length == -1 {
 		length = maxWidth
@@ -66,7 +67,6 @@ func AlignLeft(lines []string, length int, pad string) []string {
 // 中央寄せは見た目上の文字列の長さで揃える。
 // length = -1のときは、引数文字列の最長の長さに合わせる。
 // padは埋める文字列を指定する。埋める文字が見た目上でマルチバイトの場合は
-// たとえlengthが奇数でも+1して偶数になるように調整する。
 func AlignCenter(lines []string, length int, pad string) []string {
 	if length == 0 || len(lines) < 1 {
 		return lines
@@ -77,6 +77,7 @@ func AlignCenter(lines []string, length int, pad string) []string {
 	padIsMultiByteString := padWidtn == 2
 
 	// -1のときは文字列の長さをalignの長さにする
+	// パッディングの長さと、処理対象の文字列のより長い方を揃える数値に指定
 	maxWidth := MaxStringWidth(lines)
 	if length == -1 {
 		length = maxWidth
@@ -134,6 +135,7 @@ func AlignRight(lines []string, length int, pad string) []string {
 	padIsMultiByteString := padWidtn == 2
 
 	// -1のときは文字列の長さをalignの長さにする
+	// パッディングの長さと、処理対象の文字列のより長い方を揃える数値に指定
 	maxWidth := MaxStringWidth(lines)
 	if length == -1 {
 		length = maxWidth
