@@ -66,7 +66,7 @@ func AlignLeft(lines []string, length int, pad string) []string {
 // AlignCenter は文字列を中央寄せする。
 // 中央寄せは見た目上の文字列の長さで揃える。
 // length = -1のときは、引数文字列の最長の長さに合わせる。
-// padは埋める文字列を指定する。埋める文字が見た目上でマルチバイトの場合は
+// padは埋める文字列を指定する。
 func AlignCenter(lines []string, length int, pad string) []string {
 	if length == 0 || len(lines) < 1 {
 		return lines
