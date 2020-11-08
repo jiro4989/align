@@ -6,7 +6,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jiro4989/align/align"
 	"github.com/nsf/termbox-go"
 	"github.com/spf13/cobra"
 )
@@ -62,7 +61,7 @@ var leftCommand = &cobra.Command{
 		// 引数なしの場合は標準入力を処理
 		if len(args) < 1 {
 			args = readStdin()
-			padded := align.AlignLeft(args, n, p)
+			padded := AlignLeft(args, n, p)
 			for _, v := range padded {
 				fmt.Println(v)
 			}
@@ -76,7 +75,7 @@ var leftCommand = &cobra.Command{
 			}
 			s := string(b)
 			lines := strings.Split(s, lf)
-			padded := align.AlignLeft(lines, n, p)
+			padded := AlignLeft(lines, n, p)
 
 			// ファイル上書き指定があれば上書き
 			if writeFile {
