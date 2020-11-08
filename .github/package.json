@@ -1,0 +1,19 @@
+{
+  "name": "align",
+  "version": "1.0.0",
+  "description": ":toc: :sectnums:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiro4989/align.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiro4989/align/issues"
+  },
+  "homepage": "https://github.com/jiro4989/align#readme"
+}
