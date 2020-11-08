@@ -6,11 +6,11 @@ on:
       - 'v*.*.*'
 
 env:
-  app: relma
-  package_desc: 'relma manages GitHub Releases versioning.'
+  app: align
+  package_desc: 'align is text align command.'
   release_files: README.* LICENSE
   goversion: '1.14'
-  build_opts: '-ldflags="-s -w -extldflags \"-static\" -X \"main.version=relma $(git describe --tags) (rev - $(git rev-parse HEAD))\""'
+  build_opts: '-ldflags="-s -w -extldflags \"-static\" -X \"main.version=align $(git describe --tags) (rev - $(git rev-parse HEAD))\""'
   maintainer: jiro
 
 jobs:
