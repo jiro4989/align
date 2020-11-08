@@ -7,7 +7,8 @@ align is text align command.
 align [left|center|right]-justify text files.
 or does stdin too.
 
-image:https://travis-ci.org/jiro4989/align.svg?branch=master["Build Status", link="https://travis-ci.org/jiro4989/align"]
+image:https://github.com/jiro4989/align/workflows/test/badge.svg[test]
+image:https://codecov.io/gh/jiro4989/align/branch/master/graph/badge.svg[codecov, link="https://codecov.io/gh/jiro4989/align"]
 
 == development
 
