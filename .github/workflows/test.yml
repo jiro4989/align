@@ -1,0 +1,73 @@
+name: test
+
+on:
+  push:
+    paths-ignore:
+      - 'LICENSE'
+      - '*.adoc'
+      - '.gitignore'
+  pull_request:
+    paths-ignore:
+      - 'LICENSE'
+      - '*.adoc'
+      - '.gitignore'
+
+jobs:
+  skip:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Skip job"
+
+  before:
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - run: echo "not contains '[skip ci]'"
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: [ '1.14' ]
+        os: [windows, linux, darwin]
+        arch: [386, amd64]
+    needs: before
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+      - run: go build
+        env:
+          GOOS: ${{ matrix.os }}
+          GOARCH: ${{ matrix.arch }}
+      - run: go test -v -cover
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: before
+    steps:
+      - uses: actions/checkout@v2
+      - uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.31
+          args: --issues-exit-code=0
+          only-new-issues: true
+
+  coverage:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: before
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.14'
+      - name: Install dependencies
+        run: |
+          GO111MODULE=off go get \
+                 github.com/onsi/gomega \
+                 github.com/onsi/ginkgo \
+                 golang.org/x/tools/cmd/cover
+      - run: go test -coverprofile=cover.out -covermode=count .
+      - uses: codecov/codecov-action@v1
