@@ -5,13 +5,21 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	leftPad       string
+	leftLength    int
+	leftWrite     bool
+	leftLineFeed  string
+	leftTermWidth bool
+)
+
 func init() {
 	RootCommand.AddCommand(leftCommand)
-	leftCommand.Flags().StringP("pad", "p", " ", "Padding string")
-	leftCommand.Flags().IntP("length", "n", -1, "Padding length")
-	leftCommand.Flags().BoolP("write", "w", false, "Overwrite file")
-	leftCommand.Flags().StringP("linefeed", "l", "\n", "Line feed")
-	leftCommand.Flags().BoolP("termwidth", "t", false, "Terminal width")
+	leftCommand.Flags().StringVarP(&leftPad, "pad", "p", " ", "Padding string")
+	leftCommand.Flags().IntVarP(&leftLength, "length", "n", -1, "Padding length")
+	leftCommand.Flags().BoolVarP(&leftWrite, "write", "w", false, "Overwrite file")
+	leftCommand.Flags().StringVarP(&leftLineFeed, "linefeed", "l", "\n", "Line feed")
+	leftCommand.Flags().BoolVarP(&leftTermWidth, "termwidth", "t", false, "Terminal width")
 }
 
 var leftCommand = &cobra.Command{
@@ -19,32 +27,13 @@ var leftCommand = &cobra.Command{
 	Aliases: []string{"l"},
 	Short:   "Align left command from file or stdin",
 	Run: func(cmd *cobra.Command, args []string) {
-		f := cmd.Flags()
-
-		p, err := f.GetString("pad")
-		if err != nil {
-			panic(err)
-		}
-
-		n, err := f.GetInt("length")
-		if err != nil {
-			panic(err)
-		}
-
-		writeFile, err := f.GetBool("write")
-		if err != nil {
-			panic(err)
-		}
-
-		lf, err := f.GetString("linefeed")
-		if err != nil {
-			panic(err)
-		}
-
-		useTermWidth, err := f.GetBool("termwidth")
-		if err != nil {
-			panic(err)
-		}
+		var (
+			p            = leftPad
+			n            = leftLength
+			writeFile    = leftWrite
+			lf           = leftLineFeed
+			useTermWidth = leftTermWidth
+		)
 
 		if useTermWidth {
 			if err := termbox.Init(); err != nil {
