@@ -40,6 +40,8 @@ var verticalBottomCommand = &cobra.Command{
 			lineFeed:  lf,
 			f:         AlignVerticalBottom,
 		}
-		LogicVerticalAlign(param)
+		if err := LogicVerticalAlign(param); err != nil {
+			panic(err)
+		}
 	},
 }

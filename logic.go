@@ -68,7 +68,7 @@ type LogicVerticalAlignParam struct {
 	f         func([]string, int) []string
 }
 
-func LogicVerticalAlign(param LogicVerticalAlignParam) {
+func LogicVerticalAlign(param LogicVerticalAlignParam) error {
 	var (
 		args      = param.args
 		n         = param.length
@@ -84,13 +84,13 @@ func LogicVerticalAlign(param LogicVerticalAlignParam) {
 		for _, v := range padded {
 			fmt.Println(v)
 		}
-		return
+		return nil
 	}
 
 	for _, fn := range args {
 		b, err := ioutil.ReadFile(fn)
 		if err != nil {
-			panic(err)
+			return err
 		}
 		s := string(b)
 		lines := strings.Split(s, lf)
@@ -100,7 +100,7 @@ func LogicVerticalAlign(param LogicVerticalAlignParam) {
 		if writeFile {
 			b := []byte(strings.Join(padded, lf))
 			if err := ioutil.WriteFile(fn, b, os.ModePerm); err != nil {
-				panic(err)
+				return err
 			}
 			continue
 		}
@@ -108,4 +108,5 @@ func LogicVerticalAlign(param LogicVerticalAlignParam) {
 			fmt.Println(v)
 		}
 	}
+	return nil
 }

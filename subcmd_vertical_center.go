@@ -40,6 +40,8 @@ var verticalCenterCommand = &cobra.Command{
 			lineFeed:  lf,
 			f:         AlignVerticalCenter,
 		}
-		LogicVerticalAlign(param)
+		if err := LogicVerticalAlign(param); err != nil {
+			panic(err)
+		}
 	},
 }
