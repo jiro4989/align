@@ -17,8 +17,9 @@ func init() {
 }
 
 var verticalCenterCommand = &cobra.Command{
-	Use:   "vertical-center",
-	Short: "Align center command from file or stdin",
+	Use:     "vertical-center",
+	Aliases: []string{"vc"},
+	Short:   "Align vertical center command from file or stdin",
 	Run: func(cmd *cobra.Command, args []string) {
 		f := cmd.Flags()
 
