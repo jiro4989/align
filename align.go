@@ -167,3 +167,65 @@ func AlignRight(lines []string, length int, pad string) []string {
 	}
 	return ret
 }
+
+// AlignVerticalTop は垂直上方向に位置揃えする
+func AlignVerticalTop(lines []string, height int) []string {
+	if height <= len(lines) {
+		return lines
+	}
+
+	var ret []string
+	for _, line := range lines {
+		ret = append(ret, line)
+	}
+	for i := 0; i < height-len(lines); i++ {
+		ret = append(ret, "")
+	}
+
+	return ret
+}
+
+// AlignVerticalCenter は垂直中央方向に位置揃えする
+func AlignVerticalCenter(lines []string, height int) []string {
+	if height <= len(lines) {
+		return lines
+	}
+
+	diffLen := height - len(lines)
+	halfDiff := diffLen / 2
+
+	var ret []string
+	for i := 0; i < halfDiff; i++ {
+		ret = append(ret, "")
+	}
+	for _, line := range lines {
+		ret = append(ret, line)
+	}
+	for i := 0; i < halfDiff; i++ {
+		ret = append(ret, "")
+	}
+
+	// 追加の必要な行数が奇数の場合は、下側に余った1行を追加する
+	if diffLen%2 == 1 {
+		ret = append(ret, "")
+	}
+
+	return ret
+}
+
+// AlignVerticalBottom は垂直下方向に位置揃えする
+func AlignVerticalBottom(lines []string, height int) []string {
+	if height <= len(lines) {
+		return lines
+	}
+
+	var ret []string
+	for i := 0; i < height-len(lines); i++ {
+		ret = append(ret, "")
+	}
+	for _, line := range lines {
+		ret = append(ret, line)
+	}
+
+	return ret
+}
