@@ -61,6 +61,8 @@ var rightCommand = &cobra.Command{
 			lineFeed:  lf,
 			f:         AlignRight,
 		}
-		LogicHorizontalAlign(param)
+		if err := LogicHorizontalAlign(param); err != nil {
+			panic(err)
+		}
 	},
 }

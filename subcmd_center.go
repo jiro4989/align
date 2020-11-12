@@ -61,6 +61,8 @@ var centerCommand = &cobra.Command{
 			lineFeed:  lf,
 			f:         AlignCenter,
 		}
-		LogicHorizontalAlign(param)
+		if err := LogicHorizontalAlign(param); err != nil {
+			panic(err)
+		}
 	},
 }
