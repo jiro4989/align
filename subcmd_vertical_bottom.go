@@ -1,11 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"os"
-	"strings"
-
 	"github.com/spf13/cobra"
 )
 
@@ -38,36 +33,15 @@ var verticalBottomCommand = &cobra.Command{
 			panic(err)
 		}
 
-		// 引数なしの場合は標準入力を処理
-		if len(args) < 1 {
-			args = readStdin()
-			padded := AlignVerticalBottom(args, n)
-			for _, v := range padded {
-				fmt.Println(v)
-			}
-			return
+		param := LogicVerticalAlignParam{
+			args:      args,
+			length:    n,
+			writeFile: writeFile,
+			lineFeed:  lf,
+			f:         AlignVerticalBottom,
 		}
-
-		for _, fn := range args {
-			b, err := ioutil.ReadFile(fn)
-			if err != nil {
-				panic(err)
-			}
-			s := string(b)
-			lines := strings.Split(s, lf)
-			padded := AlignVerticalBottom(lines, n)
-
-			// ファイル上書き指定があれば上書き
-			if writeFile {
-				b := []byte(strings.Join(padded, lf))
-				if err := ioutil.WriteFile(fn, b, os.ModePerm); err != nil {
-					panic(err)
-				}
-				continue
-			}
-			for _, v := range padded {
-				fmt.Println(v)
-			}
+		if err := LogicVerticalAlign(param); err != nil {
+			panic(err)
 		}
 	},
 }

@@ -1,11 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"os"
-	"strings"
-
 	"github.com/nsf/termbox-go"
 	"github.com/spf13/cobra"
 )
@@ -58,36 +53,16 @@ var centerCommand = &cobra.Command{
 			termbox.Close()
 		}
 
-		// 引数なしの場合は標準入力を処理
-		if len(args) < 1 {
-			args = readStdin()
-			padded := AlignCenter(args, n, p)
-			for _, v := range padded {
-				fmt.Println(v)
-			}
-			return
+		param := LogicHorizontalAlignParam{
+			args:      args,
+			pad:       p,
+			length:    n,
+			writeFile: writeFile,
+			lineFeed:  lf,
+			f:         AlignCenter,
 		}
-
-		for _, fn := range args {
-			b, err := ioutil.ReadFile(fn)
-			if err != nil {
-				panic(err)
-			}
-			s := string(b)
-			lines := strings.Split(s, lf)
-			padded := AlignCenter(lines, n, p)
-
-			// ファイル上書き指定があれば上書き
-			if writeFile {
-				b := []byte(strings.Join(padded, lf))
-				if err := ioutil.WriteFile(fn, b, os.ModePerm); err != nil {
-					panic(err)
-				}
-				continue
-			}
-			for _, v := range padded {
-				fmt.Println(v)
-			}
+		if err := LogicHorizontalAlign(param); err != nil {
+			panic(err)
 		}
 	},
 }
