@@ -167,3 +167,20 @@ func AlignRight(lines []string, length int, pad string) []string {
 	}
 	return ret
 }
+
+// AlignVerticalTop は垂直方向に位置揃えする
+func AlignVerticalTop(lines []string, height int) []string {
+	if height <= len(lines) {
+		return lines
+	}
+
+	var ret []string
+	for _, line := range lines {
+		ret = append(ret, line)
+	}
+	for i := 0; i < height-len(lines); i++ {
+		ret = append(ret, "")
+	}
+
+	return ret
+}
