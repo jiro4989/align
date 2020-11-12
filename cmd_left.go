@@ -15,8 +15,9 @@ func init() {
 }
 
 var leftCommand = &cobra.Command{
-	Use:   "left",
-	Short: "Align left command from file or stdin",
+	Use:     "left",
+	Aliases: []string{"l"},
+	Short:   "Align left command from file or stdin",
 	Run: func(cmd *cobra.Command, args []string) {
 		f := cmd.Flags()
 
