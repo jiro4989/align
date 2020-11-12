@@ -176,6 +176,78 @@ func TestAlignVerticalTop(t *testing.T) {
 	}
 }
 
+func TestAlignVerticalCenter(t *testing.T) {
+	tests := []struct {
+		desc   string
+		lines  []string
+		height int
+		want   []string
+	}{
+		{
+			desc: "正常系: 1行中央に揃える",
+			lines: []string{
+				"hello",
+				"world",
+			},
+			height: 3,
+			want: []string{
+				"hello",
+				"world",
+				"",
+			},
+		},
+		{
+			desc: "正常系: 両方に追加される",
+			lines: []string{
+				"hello",
+				"world",
+			},
+			height: 4,
+			want: []string{
+				"",
+				"hello",
+				"world",
+				"",
+			},
+		},
+		{
+			desc: "正常系: 加算した結果余分になった行は、下側に追加される",
+			lines: []string{
+				"hello",
+				"world",
+			},
+			height: 5,
+			want: []string{
+				"",
+				"hello",
+				"world",
+				"",
+				"",
+			},
+		},
+		{
+			desc: "正常系: heightのほうがlinesより小さい場合は変更なし",
+			lines: []string{
+				"hello",
+				"world",
+			},
+			height: 1,
+			want: []string{
+				"hello",
+				"world",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			assert := assert.New(t)
+			got := AlignVerticalCenter(tt.lines, tt.height)
+			assert.Equal(tt.want, got)
+		})
+	}
+}
+
 func TestAlignVerticalBottom(t *testing.T) {
 	tests := []struct {
 		desc   string
