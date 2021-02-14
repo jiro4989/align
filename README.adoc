@@ -94,10 +94,13 @@ Examples:
 align right README.md
 
 Available Commands:
-  center      Align center command from file or stdin
-  help        Help about any command
-  left        Align left command from file or stdin
-  right       Align right command from file or stdin
+  center          Align center command from file or stdin
+  help            Help about any command
+  left            Align left command from file or stdin
+  right           Align right command from file or stdin
+  vertical-bottom Align vertical bottom command from file or stdin
+  vertical-center Align vertical center command from file or stdin
+  vertical-top    Align vertical top command from file or stdin
 
 Flags:
   -h, --help      help for align
